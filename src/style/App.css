@@ -1,0 +1,723 @@
+/* ---- */
+/* Home */
+/* ---- */
+
+.home-page {
+    padding: 0 5rem;
+    min-height: 100vh;
+}
+
+.hero {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+    border-bottom: 4px solid #3a3a3a;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.slide.active {
+    top: 0%;
+    opacity: 1;
+}
+
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-content {
+    text-align: center;
+    color: white;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.mob-type {
+    display: inline-block;
+    padding: 12px 12px 4px 16px;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border: 2px solid;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.mob-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    color: white;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.mob-description {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0 0 2rem 0;
+    color: #ccc;
+}
+
+.minecraft-button {
+    display: inline-block;
+    padding: 12px 24px 0px;
+    color: #1a1a1a;
+    background-color: var(--hightlight-color);
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid;
+    border-bottom: 4px solid;
+    border-right: 4px solid;
+    transition: all 0.1s ease;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.minecraft-button:hover {
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: translate(2px, 2px);
+    filter: brightness(1.1);
+}
+
+/* Navigation */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #555;
+    border: 2px solid #777;
+    color: white;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    z-index: 10;
+}
+
+.nav-button:hover {
+    background: var(--hightlight-color);
+    border-color: var(--hightlight-color);
+}
+
+.prev-button {
+    left: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
+
+/* Pagination */
+.pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.pagination-dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-dot:hover {
+    transform: scale(1.2);
+}
+
+/* Default Hero */
+.hero-default {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* Main Content */
+.home-container {
+    padding: 3rem 2rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.mobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.no-mobs {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh;
+        min-height: 300px;
+    }
+    
+    .slide-content {
+        padding: 1rem;
+    }
+    
+    .mob-name {
+        font-size: 2rem;
+    }
+    
+    .mob-description {
+        font-size: 1rem;
+    }
+    
+    .nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 40vh;
+    }
+    
+    .mob-name {
+        font-size: 1.8rem;
+    }
+    
+    .minecraft-button {
+        padding: 10px 20px;
+    }
+}
+
+/* ---------------- */
+/* Mob Details Page */
+/* ---------------- */
+/* Mob Details Page */
+.mob-details-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Project Details Overlay */
+.project-details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    padding: 2rem;
+}
+
+/* Floating Blocks */
+.floating-block {
+    background: #8b8b8b;
+    border: 4px solid #5a5a5a;
+    border-bottom: 6px solid #4a4a4a;
+    border-right: 6px solid #4a4a4a;
+    padding: 1.5rem;
+    pointer-events: auto;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    background: rgba(139, 139, 139, 0.9);
+}
+
+/* Block Positions */
+.back-block {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+.header-block {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    text-align: center;
+}
+
+.sound-block {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.stats-block {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    min-width: 250px;
+}
+
+.description-block {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    max-width: 400px;
+}
+
+.drops-block {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    min-width: 200px;
+}
+
+.abilities-block {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    min-width: 300px;
+}
+
+.block-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #5a5a5a;
+    padding-bottom: 0.5rem;
+}
+
+.block-header h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.block-icon {
+    font-size: 1.5rem;
+}
+
+.mob-header {
+    text-align: center;
+}
+
+.mob-title {
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 0 1rem 0;
+    text-shadow: 3px 3px 0px #000;
+}
+
+.type-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.type-tag, .rarity-tag {
+    padding: 8px 16px 4px;
+    font-weight: bold;
+    border: 2px solid;
+    border-bottom: 4px solid;
+    border-right: 4px solid;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.type-tag {
+    color: #1a1a1a;
+}
+
+.rarity-tag {
+    background: #555;
+    color: white;
+    border-color: #777;
+}
+
+.minecraft-btn {
+    display: inline-block;
+    padding: 12px 24px 6px;
+    background: #727272;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #8c8c8c;
+    border-bottom: 4px solid #5a5a5a;
+    border-right: 4px solid #5a5a5a;
+    transition: all 0.1s ease;
+    text-shadow: 1px 1px 0px #000;
+}
+
+.minecraft-btn:hover {
+    border-bottom: 2px solid #5a5a5a;
+    border-right: 2px solid #5a5a5a;
+    transform: translate(2px, 2px);
+}
+
+.floating-block:has(.sound-btn){
+    padding: 0;
+}
+
+.sound-btn.large.mob_dit {
+    display: flex;
+    align-items: center;
+    color: #1a1a1a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.sound-icon.mob_dit {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.sound-btn.large.mob_dit:hover:not(:disabled) {
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: translate(2px, 2px);
+    filter: brightness(1.1);
+}
+
+.sound-btn.large.mob_dit.playing {
+    background: #FFAA00 !important;
+    border-color: #FFAA00 !important;
+}
+
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: #5a5a5a;
+    border: 2px solid #727272;
+    border-bottom: 3px solid #666;
+    border-right: 3px solid #666;
+}
+
+.stat-label {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.stat-value {
+    color: white;
+    font-weight: bold;
+}
+
+.description-text {
+    color: #e0e0e0;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.drops-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.drop-item {
+    background: #5a5a5a;
+    color: white;
+    padding: 4px 12px 2px;
+    border: 2px solid #727272;
+    border-bottom: 3px solid #666;
+    border-right: 3px solid #666;
+    font-size: 0.9rem;
+}
+
+.abilities-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.abilities-section, .weaknesses-section {
+    color: #e0e0e0;
+}
+
+.abilities-section h4, .weaknesses-section h4 {
+    color: white;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #5a5a5a;
+    padding-bottom: 0.3rem;
+}
+
+.abilities-section ul, .weaknesses-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.abilities-section li, .weaknesses-section li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #666;
+}
+
+.abilities-section li:last-child, .weaknesses-section li:last-child {
+    border-bottom: none;
+}
+
+
+
+.stat-item .stat-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stat-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.heart-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.sound-btn.large:hover:not(:disabled) {
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: translate(2px, 2px);
+    filter: brightness(1.1);
+}
+
+.sound-btn.large:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.sound-btn.large.playing {
+    background: #FFAA00 !important;
+    border-color: #FFAA00 !important;
+}
+
+.block-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #5a5a5a;
+    padding-bottom: 0.5rem;
+}
+
+.block-header h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background: #5a5a5a;
+    border: 2px solid #727272;
+    border-bottom: 3px solid #666;
+    border-right: 3px solid #666;
+}
+
+.stat-label {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .sound-btn.large {
+        padding: 10px 16px 4px;
+        font-size: 0.9rem;
+    }
+    
+    .sound-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .stat-icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .heart-icon {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sound-btn.large {
+        padding: 8px 12px 2px;
+        font-size: 0.8rem;
+    }
+    
+    .sound-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .stat-item {
+        padding: 0.6rem;
+    }
+    
+    .stat-label, .stat-value {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .project-details-overlay {
+        padding: 1rem;
+    }
+    
+    .stats-block, .description-block {
+        position: static;
+        transform: none;
+        margin: 1rem 0;
+        max-width: none;
+    }
+    
+    .abilities-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-block {
+        padding: 1rem;
+    }
+    
+    .header-block {
+        position: static;
+        transform: none;
+        margin-bottom: 1rem;
+    }
+    
+    .back-block, .sound-block {
+        position: static;
+        margin-bottom: 1rem;
+    }
+    
+    .project-details-overlay {
+        position: relative;
+        height: auto;
+        overflow-y: auto;
+    }
+    
+    .mob-details-page {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .canvas-container {
+        position: relative;
+        height: 50vh;
+    }
+}

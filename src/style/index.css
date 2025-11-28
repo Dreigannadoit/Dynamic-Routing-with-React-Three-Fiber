@@ -1,0 +1,571 @@
+@font-face {
+    font-family: "mainFont";
+    src: url("/Minecraftia-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: mainFont;
+}
+
+:root {
+    --background-color: #262422;
+    --main-color: #edeeed;
+    --hightlight-color: #61913C;
+    
+    /* Mob type colors */
+    --passive-color: #55FF55;
+    --neutral-color: #FFAA00;
+    --hostile-color: #FF5555;
+    --boss-color: #AA00AA;
+    --utility-color: #5555FF;
+}
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+    font-family: mainFont;
+}
+
+.app {
+    width: 100%;
+    background-color: var(--background-color);
+}
+
+.main-content {
+    height: auto;
+    width: 100%;
+}
+
+/* ------ */
+/* Navbar */
+/* ------ */
+
+.navbar {
+    width: 100%;
+    height: 150px;
+    padding: 0 5rem;
+}
+
+body:has(.mob-details-page) .navbar{
+    display: none;
+}
+
+.nav-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0 30px 0;
+}
+
+.nav-container .nav-logo {
+    height: 100%;
+}
+
+.nav-container .nav-logo img {
+    height: 100%;
+}
+
+.nav-container li{
+    list-style: none;
+    background-color: var(--hightlight-color);
+    border: none;
+    padding: 10px 12px 0px;
+}
+
+.nav-container li  a{
+    color: var(--main-color);
+}
+
+/* ------------- */
+/* Project Cards */
+/* ------------- */
+
+.project-card {
+    background: #8b8b8b;
+    border: 4px solid;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    overflow: visible; /* Allow image to pop out */
+    margin-bottom: 25px;
+}
+
+.project-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.card-top-border {
+    height: 6px;
+    width: 100%;
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    right: -2px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1rem;
+    position: relative;
+}
+
+.mob-image-popout {
+    position: relative;
+    margin: -40px -10px 20px -10px; 
+    z-index: 2;
+}
+
+.popout-frame {
+    position: relative;
+    background: #727272;
+    border: 4px solid #5a5a5a;
+    border-bottom: 8px solid #5a5a5a;
+    border-right: 8px solid #5a5a5a;
+    padding: 12px;
+    margin-bottom: 1rem;
+    transform: perspective(1000px) rotateX(5deg) translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover .popout-frame {
+    transform: perspective(1000px) rotateX(8deg) translateY(-15px) scale(1.02);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.popout-inner {
+    position: relative;
+    border: 3px solid #8c8c8c;
+    border-bottom: 5px solid #7a7a7a;
+    border-right: 5px solid #7a7a7a;
+}
+
+.mob-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .mob-image {
+    transform: scale(1.05);
+}
+
+.popout-shadow {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    filter: blur(8px);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .popout-shadow {
+    width: 85%;
+    height: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    filter: blur(12px);
+}
+
+.health-bar {
+    background: #2a2a2a;
+    border: 2px solid #5a5a5a;
+    border-bottom: 4px solid #4a4a4a;
+    border-right: 4px solid #4a4a4a;
+    height: 24px;
+    position: relative;
+    margin-top: 1rem;
+    z-index: 3;
+}
+
+.health-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #000;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.mob-type-label {
+    padding: 12px 12px 2px;
+    color: #1a1a1a;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 2px solid;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.mob-rarity-label {
+    padding: 8px 8px 2px;
+    background: #555;
+    color: white;
+    font-size: 0.7rem;
+    border: 2px solid #777;
+    border-bottom: 3px solid #666;
+    border-right: 3px solid #666;
+}
+
+.card-content {
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.mob-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.mob-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.mob-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 4px 8px;
+    background: #5a5a5a;
+    border: 2px solid #727272;
+    border-bottom: 3px solid #666;
+    border-right: 3px solid #666;
+}
+
+.stat-icon {
+    font-size: 0.8rem;
+}
+
+.stat-value {
+    font-size: 0.8rem;
+    color: white;
+    font-weight: bold;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.sound-btn, .view-mob-btn {
+    color: #1a1a1a;
+    font-weight: bold;
+    border: 2px solid;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.view-mob-btn{
+    width: 100%;
+    padding: 18px 12px 6px;
+    border-bottom: 4px solid;
+    border-right: 4px solid;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.sound-btn {
+    width: 10%;
+    border: none;
+    background-color: transparent;
+    background: none;
+}
+
+.sound-btn img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.sound-btn:hover:not(:disabled), .view-mob-btn:hover {
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: translate(2px, 2px);
+    filter: brightness(1.1);
+}
+
+.sound-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.sound-btn.playing {
+    background: #FFAA00 !important;
+    border-color: #FFAA00 !important;
+}
+
+/* Heart Icon Styling */
+.heart-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 4px;
+    display: inline-block;
+}
+
+
+.health-bar {
+    background: #2a2a2a;
+    border: 2px solid #5a5a5a;
+    border-bottom: 4px solid #4a4a4a;
+    border-right: 4px solid #4a4a4a;
+    height: 28px; 
+    position: relative;
+    margin-top: 1rem;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.health-text {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #000;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    z-index: 2;
+}
+
+.health-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+.popout-inner {
+    position: relative;
+    border: 3px solid #8c8c8c;
+    border-bottom: 5px solid #7a7a7a;
+    border-right: 5px solid #7a7a7a;
+    overflow: hidden;
+    height: 300px; 
+}
+
+.mob-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 0px; 
+    display: block;
+    image-rendering: pixelated;
+    transition: transform 0.3s ease;
+}
+
+.view-mob-btn {
+    padding: 16px 12px 6px;
+    border-bottom: 4px solid;
+    border-right: 4px solid;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+    align-items: stretch; 
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .mob-image-popout {
+        margin: -30px -5px 15px -5px;
+    }
+    
+    .popout-frame {
+        padding: 8px;
+        transform: perspective(800px) rotateX(3deg) translateY(-5px);
+    }
+    
+    .popout-inner {
+        height: 250px; 
+    }
+    
+    .health-bar {
+        height: 26px;
+    }
+    
+    .heart-icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .sound-btn {
+        width: 50px;
+        height: 45px;
+    }
+    
+    .sound-btn img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mob-image-popout {
+        margin: -20px 0px 10px 0px;
+    }
+    
+    .popout-frame {
+        transform: none;
+        padding: 6px;
+    }
+    
+    .popout-inner {
+        height: 200px;
+    }
+    
+    .project-card:hover .popout-frame {
+        transform: translateY(-5px);
+    }
+    
+    .health-bar {
+        height: 24px;
+    }
+    
+    .heart-icon {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .sound-btn {
+        width: 45px;
+        height: 40px;
+    }
+    
+    .sound-btn img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .mob-image-popout {
+        margin: -30px -5px 15px -5px;
+    }
+    
+    .popout-frame {
+        padding: 8px;
+        transform: perspective(800px) rotateX(3deg) translateY(-5px);
+    }
+    
+    .mob-image {
+        height: 180px;
+    }
+    
+    .mob-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mob-image-popout {
+        margin: -20px 0px 10px 0px;
+    }
+    
+    .popout-frame {
+        transform: none;
+        padding: 6px;
+    }
+    
+    .project-card:hover .popout-frame {
+        transform: translateY(-5px);
+    }
+    
+    .card-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .mob-image {
+        height: 160px;
+    }
+}
+
+
