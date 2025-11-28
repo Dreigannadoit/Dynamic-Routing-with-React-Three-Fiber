@@ -1,11 +1,9 @@
-// src/components/Navbar.jsx
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Logo } from '../assets'
 
 const Navbar = () => {
     const scrollToMobs = () => {
-        // Only scroll if we're on the home page
         if (window.location.pathname === '/') {
             const mobsSection = document.getElementById('mob-list');
             if (mobsSection) {

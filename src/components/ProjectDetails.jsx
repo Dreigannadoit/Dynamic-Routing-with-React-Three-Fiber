@@ -1,4 +1,3 @@
-// src/components/ProjectDetails.jsx
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { heart, sound } from '../assets'

@@ -7,6 +7,18 @@ import Navbar from './components/Navbar'
 import { mob_list } from './constants'
 
 function App() {
+  const signature =
+    " ______   ______    _______  ___  \n" +
+    "|      | |    _ |  |       ||   | \n" +
+    "|  _    ||   | ||  |    ___||   | \n" +
+    "| | |   ||   |_||_ |   |___ |   | \n" +
+    "| |_|   ||    __  ||    ___||   | \n" +
+    "|       ||   |  | ||   |___ |   | \n" +
+    "|______| |___|  |_||_______||___| \n" +
+    "                                  \n"
+
+  console.log(signature)
+  
   const [mobs, setMobs] = useState(mob_list)
 
   const playMobSound = (mobId) => {
