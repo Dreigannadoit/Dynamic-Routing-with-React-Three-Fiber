@@ -17,12 +17,23 @@
     --main-color: #edeeed;
     --hightlight-color: #61913C;
     
-    /* Mob type colors */
     --passive-color: #55FF55;
     --neutral-color: #FFAA00;
     --hostile-color: #FF5555;
     --boss-color: #AA00AA;
     --utility-color: #5555FF;
+    
+    --border-dark: #3a3a3a;
+    --border-medium: #5a5a5a;
+    --border-light: #777;
+    --bg-dark: #1a1a1a;
+    --bg-medium: #5a5a5a;
+    --bg-light: #8b8b8b;
+    --text-primary: white;
+    --text-secondary: #ccc;
+    --text-dark: #1a1a1a;
+    --shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+    --transition: all 0.1s ease;
 }
 
 body {
@@ -30,6 +41,11 @@ body {
     overflow-x: hidden;
     font-family: mainFont;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 
 .app {
     width: 100%;
@@ -269,32 +285,29 @@ body:has(.mob-details-page) .navbar{
     margin-bottom: 1rem;
 }
 
-.mob-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+.mob-stats.single-column {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
 }
 
-.stat-item {
+.stat-item.single-column {
+    justify-content: space-between;
+    padding: 10px 12px;
+}
+
+.mob-stats.vertical {
     display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.stat-item.vertical {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.3rem;
-    padding: 4px 8px;
-    background: #5a5a5a;
-    border: 2px solid #727272;
-    border-bottom: 3px solid #666;
-    border-right: 3px solid #666;
+    padding: 8px 12px;
 }
 
-.stat-icon {
-    font-size: 0.8rem;
-}
-
-.stat-value {
-    font-size: 0.8rem;
-    color: white;
-    font-weight: bold;
-}
 
 .card-actions {
     display: flex;
@@ -331,7 +344,6 @@ body:has(.mob-details-page) .navbar{
 }
 
 .sound-btn img{
-    width: 100%;
     object-fit: cover;
 }
 

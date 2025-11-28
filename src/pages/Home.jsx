@@ -1,35 +1,66 @@
-// src/pages/Home.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 
 const Home = ({ mobs, onPlaySound }) => {
     const [currentSlide, setCurrentSlide] = useState(0)
-    
-    // Get last 5 mobs for the slider
+    const [selectedType, setSelectedType] = useState('All')
+    const [filteredMobs, setFilteredMobs] = useState(mobs)
+    const [showFilter, setShowFilter] = useState(false)
+    const homeContainerRef = useRef(null)
+
     const sliderMobs = mobs.slice(-5)
-    
-    // Color mapping for mob types
+
+    const mobTypes = ['All', ...new Set(mobs.map(mob => mob.type))]
+
     const getTypeColor = (type) => {
         const colors = {
-            'Passive': '#55FF55', // Green
-            'Neutral': '#FFAA00', // Orange
-            'Hostile': '#FF5555', // Red
-            'Boss': '#AA00AA',    // Purple
-            'Utility': '#5555FF'  // Blue
+            'Passive': '#55FF55',
+            'Neutral': '#FFAA00',
+            'Hostile': '#FF5555',
+            'Boss': '#AA00AA',
+            'Utility': '#5555FF',
+            'All': '#727272'
         }
-        return colors[type] || '#727272' // Default gray
+        return colors[type] || '#727272'
     }
+    useEffect(() => {
+        if (selectedType === 'All') {
+            setFilteredMobs(mobs)
+        } else {
+            setFilteredMobs(mobs.filter(mob => mob.type === selectedType))
+        }
+    }, [selectedType, mobs])
+
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (homeContainerRef.current) {
+                const containerRect = homeContainerRef.current.getBoundingClientRect()
+                setShowFilter(containerRect.top <= window.innerHeight * 0.8)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        handleScroll()
+
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+
 
     useEffect(() => {
         if (sliderMobs.length > 0) {
             const timer = setInterval(() => {
                 setCurrentSlide((prev) => (prev + 1) % sliderMobs.length)
             }, 5000)
-            
+
             return () => clearInterval(timer)
         }
     }, [sliderMobs.length])
+
+
 
     const goToSlide = (index) => {
         setCurrentSlide(index)
@@ -59,7 +90,7 @@ const Home = ({ mobs, onPlaySound }) => {
                                 >
                                     <div className="slide-overlay">
                                         <div className="slide-content">
-                                            <div 
+                                            <div
                                                 className="mob-type"
                                                 style={{
                                                     backgroundColor: getTypeColor(mob.type),
@@ -72,8 +103,8 @@ const Home = ({ mobs, onPlaySound }) => {
                                             <p className="mob-description">
                                                 {mob.description.substring(0, 100)}...
                                             </p>
-                                            <Link 
-                                                to={`/mob/${mob.id}`} 
+                                            <Link
+                                                to={`/mob/${mob.id}`}
                                                 className="minecraft-button"
                                             >
                                                 View Mob
@@ -84,7 +115,6 @@ const Home = ({ mobs, onPlaySound }) => {
                             ))}
                         </div>
 
-                        {/* Navigation */}
                         {sliderMobs.length > 1 && (
                             <>
                                 <button className="nav-button prev-button" onClick={prevSlide}>
@@ -93,7 +123,7 @@ const Home = ({ mobs, onPlaySound }) => {
                                 <button className="nav-button next-button" onClick={nextSlide}>
                                     ›
                                 </button>
-                                
+
                                 <div className="pagination">
                                     {sliderMobs.map((mob, index) => (
                                         <button
@@ -120,14 +150,48 @@ const Home = ({ mobs, onPlaySound }) => {
                 )}
             </div>
 
-            <div className="home-container">
+            <br /><br /><br />
                 <div className="section-header">
                     <h2>Mob Library</h2>
                     <p>Click to explore in 3D</p>
+                    <div className="active-filter">
+                        Showing: <span style={{ color: getTypeColor(selectedType) }}>{selectedType}</span>
+                        ({filteredMobs.length} {filteredMobs.length === 1 ? 'mob' : 'mobs'})
+                    </div>
                 </div>
 
+            <div className="home-container" ref={homeContainerRef}>
+
+                {showFilter && (
+                    <div className="filter-sidebar">
+                        <div className="filter-header">
+                            <h3>Filter Mobs</h3>
+                        </div>
+                        <div className="filter-options">
+                            {mobTypes.map(type => (
+                                <button
+                                    key={type}
+                                    className={`filter-btn ${selectedType === type ? 'active' : ''}`}
+                                    onClick={() => setSelectedType(type)}
+                                    style={{
+                                        backgroundColor: selectedType === type ? getTypeColor(type) : '#555',
+                                        borderColor: getTypeColor(type)
+                                    }}
+                                >
+                                    {type}
+                                    {type !== 'All' && (
+                                        <span className="mob-count">
+                                            ({mobs.filter(mob => mob.type === type).length})
+                                        </span>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 <div className="mobs-grid" id='mob-list'>
-                    {mobs.map(mob => (
+                    {filteredMobs.map(mob => (
                         <ProjectCard
                             key={mob.id}
                             mob={mob}
@@ -136,10 +200,16 @@ const Home = ({ mobs, onPlaySound }) => {
                     ))}
                 </div>
 
-                {mobs.length === 0 && (
+                {filteredMobs.length === 0 && (
                     <div className="no-mobs">
-                        <h3>No mobs available</h3>
-                        <p>Check back later for more mobs!</p>
+                        <h3>No mobs found</h3>
+                        <p>Try selecting a different filter</p>
+                        <button
+                            className="minecraft-button"
+                            onClick={() => setSelectedType('All')}
+                        >
+                            Show All Mobs
+                        </button>
                     </div>
                 )}
             </div>

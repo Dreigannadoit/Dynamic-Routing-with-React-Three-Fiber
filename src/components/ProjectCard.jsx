@@ -6,7 +6,7 @@ const ProjectCard = ({ mob, onPlaySound }) => {
     const getTypeColor = (type) => {
         const colors = {
             'Passive': '#55FF55',
-            'Neutral': '#FFAA00', 
+            'Neutral': '#FFAA00',
             'Hostile': '#FF5555',
             'Boss': '#AA00AA',
             'Utility': '#5555FF'
@@ -23,7 +23,7 @@ const ProjectCard = ({ mob, onPlaySound }) => {
     return (
         <div className="project-card" style={{ borderColor: getTypeColor(mob.type) }}>
             <div className="card-top-border" style={{ backgroundColor: getTypeColor(mob.type) }}></div>
-            
+
             <Link to={`/mob/${mob.id}`} className="card-link">
                 <div className="mob-image-popout">
                     <div className="popout-frame">
@@ -33,24 +33,24 @@ const ProjectCard = ({ mob, onPlaySound }) => {
                         <div className="popout-shadow"></div>
                     </div>
                     <div className="health-bar">
-                        <div 
-                            className="health-fill" 
-                            style={{ 
+                        <div
+                            className="health-fill"
+                            style={{
                                 width: `${Math.min(mob.health, 100)}%`,
                                 backgroundColor: mob.health > 50 ? '#55FF55' : '#FF5555'
                             }}
                         ></div>
                         <span className="health-text">
-                            <img src={heart} alt="❤️" className="heart-icon" /> 
+                            <img src={heart} alt="health" className="heart-icon" />
                             {mob.health} HP
                         </span>
                     </div>
                 </div>
-                
+
                 <div className="card-header">
-                    <div 
+                    <div
                         className="mob-type-label"
-                        style={{ 
+                        style={{
                             backgroundColor: getTypeColor(mob.type),
                             borderColor: getTypeColor(mob.type)
                         }}
@@ -61,17 +61,17 @@ const ProjectCard = ({ mob, onPlaySound }) => {
                         {mob.rarity}
                     </div>
                 </div>
-                
+
                 <div className="card-content">
                     <h3 className="mob-name">{mob.name}</h3>
                     <p className="mob-description">{mob.description.substring(0, 80)}...</p>
 
-                    <div className="mob-stats">
-                        <div className="stat-item">
+                    <div className="mob-stats vertical">
+                        <div className="stat-item vertical">
                             <span className="stat-icon">Damage: </span>
                             <span className="stat-value">{mob.damage}</span>
                         </div>
-                        <div className="stat-item">
+                        <div className="stat-item vertical">
                             <span className="stat-icon">BIOM:</span>
                             <span className="stat-value">{mob.habitat}</span>
                         </div>
@@ -84,12 +84,12 @@ const ProjectCard = ({ mob, onPlaySound }) => {
                         className={`sound-btn ${mob.isPlayingSound ? 'playing' : ''}`}
                         disabled={mob.isPlayingSound}
                     >
-                        <img src={sound} alt="🔊" className="sound-icon" />
+                        <img src={sound} alt="sound" className="sound-icon" />
                     </button>
-                    
-                    <div 
+
+                    <div
                         className="view-mob-btn"
-                        style={{ 
+                        style={{
                             backgroundColor: getTypeColor(mob.type),
                             borderColor: getTypeColor(mob.type)
                         }}

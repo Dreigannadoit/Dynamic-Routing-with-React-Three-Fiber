@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Instructions.css'
+import '../style/Instructions.css'
 
 const Instructions = () => {
     const [isVisible, setIsVisible] = useState(true)

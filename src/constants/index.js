@@ -1,5 +1,4 @@
-import {
-  pig_model,
+import { pig_model,
   iron_golem_model,
   blaze_model,
   creeper_model,
@@ -47,7 +46,7 @@ import {
   villager_banner,
   wither_banner,
   zombie_banner
-} from './assets'
+} from "../assets";
 
 export const mob_list = [
     {
@@ -162,7 +161,7 @@ export const mob_list = [
       health: 20,
       damage: "3",
       behavior: "Chases and attacks players in close range",
-      habitat: "Dark areas, Anywhere at night",
+      habitat: "Anywhere at night",
       drops: ["Rotten Flesh", "Iron Ingot", "Carrot", "Potato"],
       rarity: "Common",
       description: "A common undead mob that chases players and villagers. Can break down wooden doors and spawn baby zombies. Burns in sunlight and can call for reinforcements.",
