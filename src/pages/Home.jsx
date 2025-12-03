@@ -88,6 +88,8 @@ const Home = ({ mobs, onPlaySound }) => {
                                         backgroundImage: `url(${mob.banner})`,
                                     }}
                                 >
+
+                                    
                                     <div className="slide-overlay">
                                         <div className="slide-content">
                                             <div
