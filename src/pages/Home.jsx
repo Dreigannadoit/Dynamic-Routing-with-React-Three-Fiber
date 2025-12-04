@@ -89,7 +89,7 @@ const Home = ({ mobs, onPlaySound }) => {
                                     }}
                                 >
 
-                                    
+
                                     <div className="slide-overlay">
                                         <div className="slide-content">
                                             <div
@@ -153,14 +153,18 @@ const Home = ({ mobs, onPlaySound }) => {
             </div>
 
             <br /><br /><br />
-                <div className="section-header">
-                    <h2>Mob Library</h2>
-                    <p>Click to explore in 3D</p>
-                    <div className="active-filter">
-                        Showing: <span style={{ color: getTypeColor(selectedType) }}>{selectedType}</span>
-                        ({filteredMobs.length} {filteredMobs.length === 1 ? 'mob' : 'mobs'})
-                    </div>
+            <div className="section-header">
+                <h2>Mob Library</h2>
+                <p>Click to explore in 3D</p>
+                <div className="active-filter">
+                    Showing: <span style={{ color: getTypeColor(selectedType) }}>{selectedType}</span>
+                    ({filteredMobs.length} {filteredMobs.length === 1 ? 'mob' : 'mobs'})
                 </div>
+            </div>
+            
+            <Link to="/add-mob" className="add-mob-floating-btn">
+                + Add New Mob
+            </Link>
 
             <div className="home-container" ref={homeContainerRef}>
 

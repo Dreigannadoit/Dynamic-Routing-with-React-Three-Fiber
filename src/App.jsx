@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './style/App.css'
 import Home from './pages/Home'
 import MobDetails from './pages/MobDetails'
+import AddMob from './pages/AddMob' 
 import Navbar from './components/Navbar'
-import { mob_list } from './constants'
 
 function App() {
   const signature =
@@ -19,7 +19,49 @@ function App() {
 
   console.log(signature)
   
-  const [mobs, setMobs] = useState(mob_list)
+  const [mobs, setMobs] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchMobs()
+  }, [])
+
+  const fetchMobs = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/mobs')
+      const data = await response.json()
+      if (data.success) {
+        setMobs(data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching mobs:', error)
+      // Fallback to local data if API fails
+      const { mob_list } = require('./constants')
+      setMobs(mob_list)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const addNewMob = async (newMob) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/mobs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newMob),
+      })
+      const data = await response.json()
+      if (data.success) {
+        setMobs([...mobs, data.data])
+        return data
+      }
+    } catch (error) {
+      console.error('Error adding mob:', error)
+      throw error
+    }
+  }
 
   const playMobSound = (mobId) => {
     setMobs(prevMobs =>
@@ -55,13 +97,19 @@ function App() {
           <Route
             path="/"
             element={
-              <Home mobs={mobs} onPlaySound={playMobSound} />
+              <Home mobs={mobs} onPlaySound={playMobSound} loading={loading} />
             }
           />
           <Route
             path="/mob/:id"
             element={
               <MobDetails mobs={mobs} onPlaySound={playMobSound} />
+            }
+          />
+          <Route
+            path="/add-mob"
+            element={
+              <AddMob onAddMob={addNewMob} />
             }
           />
         </Routes>

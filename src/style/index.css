@@ -581,3 +581,22 @@ body:has(.mob-details-page) .navbar{
 }
 
 
+.add-mob-floating-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0, 204, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.add-mob-floating-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 204, 255, 0.6);
+}

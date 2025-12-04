@@ -7,7 +7,7 @@ const Navbar = () => {
         if (window.location.pathname === '/') {
             const mobsSection = document.getElementById('mob-list');
             if (mobsSection) {
-                mobsSection.scrollIntoView({ 
+                mobsSection.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
@@ -23,8 +23,8 @@ const Navbar = () => {
                 </Link>
                 <ul className="nav-links">
                     <li>
-                        <Link 
-                            to="/" 
+                        <Link
+                            to="/"
                             className="nav-link"
                             onClick={(e) => {
                                 if (window.location.pathname === '/') {
@@ -34,6 +34,10 @@ const Navbar = () => {
                             }}
                         >
                             All Mobs
+                        </Link>
+
+                        <Link to="/add-mob" className="nav-link add-mob-link">
+                            + Add New Mob
                         </Link>
                     </li>
                 </ul>
