@@ -337,6 +337,219 @@ button:disabled {
         transform: translateY(0);
     }
 }
+.file-uploads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.file-upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-upload-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #a0a0c0;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.file-requirements {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.file-upload-area {
+    background: rgba(40, 40, 60, 0.8);
+    border: 2px dashed #3a3a5a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-upload-area:hover {
+    border-color: #00ccff;
+    background: rgba(40, 40, 60, 0.9);
+}
+
+.file-input-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    color: #a0a0c0;
+    transition: all 0.3s ease;
+}
+
+.file-drop-area:hover {
+    color: #00ccff;
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.file-hint {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* File Preview Styles */
+.file-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 120px;
+    border-radius: 8px;
+    border: 2px solid #3a3a5a;
+}
+
+.model-preview,
+.sound-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(50, 50, 70, 0.6);
+    border-radius: 8px;
+    border: 2px solid #3a3a5a;
+}
+
+.model-icon,
+.sound-icon {
+    font-size: 2rem;
+}
+
+.file-name {
+    font-size: 0.9rem;
+    color: #a0a0c0;
+    word-break: break-all;
+    text-align: center;
+}
+
+.remove-file-btn {
+    background: rgba(255, 85, 85, 0.2);
+    color: #ff5555;
+    border: 1px solid #ff5555;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.remove-file-btn:hover {
+    background: rgba(255, 85, 85, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Upload Progress */
+.upload-progress {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(40, 40, 60, 0.8);
+    border-radius: 8px;
+    border: 2px solid #3a3a5a;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(60, 60, 80, 0.8);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.upload-progress p {
+    text-align: center;
+    color: #a0a0c0;
+    font-size: 0.9rem;
+}
+
+/* Required field indicator */
+.file-upload-label span:first-child::after {
+    content: ' *';
+    color: #ff5555;
+}
+
+/* Make only image required */
+.file-upload-label:not(:has(+ .file-upload-area #image)) span:first-child::after {
+    content: '';
+}
+
+/* Drag and drop enhancement */
+.file-drop-area.drag-over {
+    border-color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+}
+
+/* File size indicator */
+.file-size {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .file-uploads-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .file-upload-area {
+        min-height: 120px;
+        padding: 1rem;
+    }
+}
 
 @keyframes popIn {
     from {
@@ -349,7 +562,6 @@ button:disabled {
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .add-mob-container {
         padding: 1rem;
@@ -378,3 +590,4 @@ button:disabled {
         flex-direction: column;
     }
 }
+
