@@ -540,6 +540,7 @@ button:disabled {
 }
 
 
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .file-uploads-grid {
