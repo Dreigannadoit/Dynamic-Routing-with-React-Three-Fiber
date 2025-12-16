@@ -69,7 +69,7 @@ function App() {
         mob.id === mobId
           ? { ...mob, isPlayingSound: true }
 
-          
+
           : mob
       )
     )
