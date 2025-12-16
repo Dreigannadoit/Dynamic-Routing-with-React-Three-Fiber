@@ -68,6 +68,8 @@ function App() {
       prevMobs.map(mob =>
         mob.id === mobId
           ? { ...mob, isPlayingSound: true }
+
+          
           : mob
       )
     )
